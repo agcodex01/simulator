@@ -1,0 +1,28 @@
+{
+  "name": "abm-simulator",
+  "version": "1.0.0",
+  "description": "Simple Coin and Bill Acceptor",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdopisoftPN/simulator.git"
+  },
+  "keywords": [
+    "simulator"
+  ],
+  "author": " <loremZyn14>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdopisoftPN/simulator/issues"
+  },
+  "homepage": "https://github.com/AdopisoftPN/simulator#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6",
+    "socket.io": "^4.2.0"
+  }
+}
