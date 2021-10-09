@@ -1,38 +1,47 @@
 const bills = [
     {
         amount: 1,
-        image: 'piso.png'
+        image: '1peso.png',
+        type: 'coin'
     },
     {
         amount: 5,
-        image: 'piso.png'
+        image: '5peso.png',
+        type: 'coin'
     },
     {
         amount: 10,
-        image: 'piso.png'
+        image: '10peso.png',
+        type: 'coin'
     },
     {
         amount: 20,
-        image: 'piso.png'
+        image: '20bill.jpg',
+        type: 'bill'
     },
     {
         amount: 50,
-        image: 'piso.png'
+        image: '50bill.jpg',
+        type: 'bill'
     },
     {
         amount: 100,
-        image: 'piso.png'
+        image: '100bill.jpg',
+        type: 'bill'
     },
     {
         amount: 200,
-        image: 'piso.png'
+        image: '200bill.png',
+        type: 'bill'
     },
     {
         amount: 500,
-        image: 'piso.png'
+        image: '500bill.jpg',
+        type: 'bill'
     },
     {
         amount: 1000,
-        image: 'piso.png'
+        image: '1000bill.png',
+        type: 'bill'
     },
 ]
