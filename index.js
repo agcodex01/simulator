@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 
 const io = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:8080"
+        origin: "*"
       }
 })
 

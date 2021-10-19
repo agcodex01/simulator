@@ -1,107 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <style> img:hover { cursor: pointer;} </style>
-    <title>ABM-SIMULATOR</title>
-  </head>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <body style="background-color: #032065e8;">
-    <div class="p-5">
-      <h1 class="text-center" style="color: white;">Bill Acceptor Simulation</h1>
-      <div id="slot" class="row"></div>
-    </div>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <style>
+    img:hover {
+      cursor: pointer;
+    }
+  </style>
 
-    <!-- Modal Here -->
-    <div
-      class="modal fade"
-      id="modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="Title"
-      aria-hidden="true"
-      style="text-align:center;"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Droping PHP <span id="amount"></span>.00</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" >
-              <img src="/images/droped.gif" width="50%" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
+  <title>ABM-SIMULATOR</title>
+</head>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/bills.js"></script>`
-    <script>
-      var socket = io();
-      window.onload = () => {
-        loadImages();
-      };
-      const loadImages = () => {
-        const el = document.getElementById("slot");
-        bills.forEach((bill) => {
-          if (bill.type == "coin") {
-            el.innerHTML += `<div class="col-md-4 p-2" style="text-align:center;">
-                                        <img onclick="insertPayment(${bill.amount})" style="width: 30%;" src="/images/${bill.image}" alt="" data-toggle="modal"
-      data-target="#modal">
-                                    </div>`;
-          } else {
-            el.innerHTML += `<div class="col-md-4 p-2" style="text-align:center;">
-                                        <img onclick="insertPayment(${bill.amount})" style="width: 100%;" src="/images/${bill.image}" alt="" data-toggle="modal"
-      data-target="#modal">
-                                    </div>`;
-          }
-        });
-      };
+<body style="background-color: #032065e8;">
+  <div class="p-5">
+    <h1 class="text-center mb-5 text-white">Bill Acceptor Simulation</h1>
+    <div id="slot" class="row"></div>
+  </div>
 
-      function insertPayment(amount) {
-        socket.emit("insertPayment", amount);
-        document.getElementById("amount").innerHTML = amount;
-        refresh();
-      }
-      function refresh() {
-          setTimeout(function () {
-              location.reload()
-            }, 2500);
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/bills.js"></script>
+  <script>
+    var socket = io();
+    window.onload = () => {
+      loadImages();
+    };
+    const loadImages = () => {
+      const el = document.getElementById("slot");
+      bills.forEach((bill) => {
+        if (bill.type == "coin") {
+          el.innerHTML += `<div class="col-md-4 p-2" style="text-align:center;">
+                            <img onclick="insertPayment(${bill.amount})" style="width: 30%;" src="/images/${bill.image}" alt="Money Image" />
+                          </div>`;
+        } else {
+          el.innerHTML += `<div class="col-md-4 p-2" style="text-align:center;">
+                              <img onclick="insertPayment(${bill.amount})" style="width: 100%;" src="/images/${bill.image}" alt="Money Image"/>
+                            </div>`;
         }
+      });
+    };
 
-    </script>
-  </body>
+    function insertPayment(amount) {
+      socket.emit("insertPayment", amount);
+      document.getElementById("amount").innerHTML = amount
+    }
+  </script>
+</body>
 </html>
