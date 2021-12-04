@@ -57,12 +57,11 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/bills.js"></script>
   <script>
-    const process = require('process');
     var units = [];
     var unitId = null
     var socket = io();
-    // const apiUri =  'https://abm-ser-dev.herokuapp.com/api'
-    const apiUri =  'http://localhost:8000/api'
+    const apiUri =  'https://abm-ser-dev.herokuapp.com/api'
+    // const apiUri =  'http://localhost:8000/api'
     window.onload = async () => {
       await fetchUnits()
       setUnits()
