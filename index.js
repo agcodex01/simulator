@@ -17,9 +17,21 @@ const io = require('socket.io')(http, {
 })
 
 io.on('connection', (socket) => {
-  socket.on('insertPayment', amount => {
-    io.emit('insertPayment', amount)
+  socket.on('join room', unitId => {
+    socket.join(unitId)
+    io.emit('join room', unitId)
+  })
+  socket.on('insertPayment', data => {
+    io.to(data.unitId)
+    .emit('insertPayment', data.amount)
   })
 });
+
+process.env.DEV
+if(process.env.ENV) {
+  console.log('DEV');
+}else {
+  console.log('PROD', process.env.ENV);
+}
 
 http.listen(port, () => console.info(`Server is running at http://localhost:${port}`));
